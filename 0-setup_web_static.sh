@@ -4,7 +4,9 @@
 apt-get update
 apt-get install -y nginx
 
-mkdir -p /data/web_static/releases/test/index.html
+mkdir -p /data/web_static/releases/test/
+mkdir -p /data/web_static/shared/
+echo "Holberton School" > /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 chown -R ubuntu /data/
@@ -22,11 +24,11 @@ printf %s "server {
 	index index.html index.htm;
     }
 
-    location /redirectt_me {
+    location /redirect_me {
     	return 301 http://cuberule.com/;
     }
 
-    error-page 404 /404.html;
+    error_page 404 /404.html;
     location /404 {
       root /var/www/html;
       internal;
