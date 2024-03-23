@@ -10,7 +10,7 @@ app.url_map.strict_slashes = False
 @app.route('/states_list')
 def list_of_states():
     """return html with unordered list of states"""
-    states = models.storage.all(State)
+    states = sorted(models.storage.all('State').values(), key=lambda s: s.name)
     return render_template('7-states_list.html', states=states)
 
 
