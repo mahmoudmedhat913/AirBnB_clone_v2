@@ -17,7 +17,7 @@ def hello_route2():
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def hello_route3():
+def hello_route3(text):
     """return text from html request"""
     return 'C {}'.format(text.replace('_', ' '))
 
