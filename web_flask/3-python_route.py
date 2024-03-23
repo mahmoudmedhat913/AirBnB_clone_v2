@@ -26,8 +26,8 @@ def hello_route3(text):
 @app.route('/python/<text>')
 @app.route('/python/', defaults={'text': 'is cool'})
 def hello_route4(text):
-        """return text from html request"""
-            return 'Python {}'.format(text.replace('_', ' '))
+    """return text from html request"""
+    return 'Python {}'.format(text.replace('_', ' '))
 
 
 if __name__ == "__main__":
