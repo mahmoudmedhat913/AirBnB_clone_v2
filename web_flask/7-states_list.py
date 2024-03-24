@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """web flask application"""
 from flask import Flask, render_template
-import models
-from models.state import State
+from models import storage
 app = Flask('web_flask')
 app.url_map.strict_slashes = False
 
@@ -10,7 +9,7 @@ app.url_map.strict_slashes = False
 @app.route('/states_list')
 def list_of_states():
     """return html with unordered list of states"""
-    states = sorted(models.storage.all('State').values(), key=lambda s: s.name)
+    states = sorted(storage.all('State').values(), key=lambda s: s.name)
     return render_template('7-states_list.html', states=states)
 
 
