@@ -1,46 +1,46 @@
 #!/usr/bin/python3
-"""web flask application"""
-from flask import Flask, render_template
-app = Flask('web_flask')
-app.url_map.strict_slashes = False
+"intro to flask"
+
+from flask import Flask, abort, render_template
+app = Flask(__name__)
 
 
-@app.route('/')
-def hello_route1():
-    """return string"""
+@app.route('/', strict_slashes=False)
+def hello():
     return 'Hello HBNB!'
 
 
-@app.route('/hbnb')
-def hello_route2():
-    """return string"""
+@app.route('/hbnb', strict_slashes=False)
+def hbnb():
     return 'HBNB'
 
 
-@app.route('/c/<text>')
-def hello_route3(text):
-    """return text from html request"""
-    return 'C {}'.format(text.replace('_', ' '))
+@app.route('/c/<text>', strict_slashes=False)
+def desplay(text):
+    new_text = text.replace('_', ' ')
+    return f'C {new_text}'
 
 
-@app.route('/python/<text>')
-@app.route('/python/', defaults={'text': 'is cool'})
-def hello_route4(text):
-    """return text from html request"""
-    return 'Python {}'.format(text.replace('_', ' '))
+@app.route('/python/<text>', strict_slashes=False)
+@app.route('/python', strict_slashes=False)
+def python(text=None):
+    if not text:
+        new_text = 'is cool'
+    else:
+        new_text = text.replace('_', ' ')
+    return f'Python {new_text}'
 
 
-@app.route('/number/<int:n>')
-def hello_route5(n):
-    """return text from html request formatted as a number"""
+@app.route('/number/<int:n>', strict_slashes=False)
+def number(n):
     return '{:d} is a number'.format(n)
 
 
-@app.route('/number_template/<int:n>')
-def hello_route6(n):
-    """return text from html template containing a number"""
-    return render_template('5-number.html', n=n)
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
+    "try this"
+    return render_template('5-number.html', number=n)
 
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)

@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""web flask application"""
+"intro to flask"
+
 from flask import Flask
-app = Flask('web_flask')
+app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
-def hello_route():
-    """return string"""
+@app.route('/airbnb-onepage/', strict_slashes=False)
+def hello():
     return 'Hello HBNB!'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
